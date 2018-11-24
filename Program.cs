@@ -56,13 +56,27 @@ class Program {
 
         aggregatedBonds = aggregatedBonds.OrderByDescending(b => b.CloseYield);
 
-        var tsv = new StringBuilder();
+        var tsv = new StringBuilder()
+            .AppendJoin("\t",
+                null,
+                null,
+                null,
+                "Листинг",
+                "Погашение",
+                "Номинал",
+                "Купон/год",
+                $"Объем/{analyzeDays}д",
+                "Доходность"
+            )
+            .AppendLine();
 
         foreach(var b in aggregatedBonds) {
             tsv
                 .AppendJoin("\t",
                     b.ShortName,
                     b.ID,
+                    b.Details.Value.GetTypeText(),
+                    b.Details.Value.ListLevel,
                     b.MaturityDate.ToString("yyyy-MM-dd"),
                     b.FaceValue,
                     b.Details.Value.CouponFreq,

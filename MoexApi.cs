@@ -12,13 +12,15 @@ static class MoexApi {
 
     public const string
         BOND_TYPE_OFZ = "ofz_bond",
-        BOND_TYPE_SUBFED = "subfederal_bond";
+        BOND_TYPE_SUBFED = "subfederal_bond",
+        BOND_TYPE_CORP = "corporate_bond",
+        BOND_TYPE_ETB = "exchange_bond";
 
     public static readonly IReadOnlyCollection<string> KNOWN_BOND_TYPES = new[] {
         BOND_TYPE_OFZ,
         BOND_TYPE_SUBFED,
-        "corporate_bond",
-        "exchange_bond"
+        BOND_TYPE_CORP,
+        BOND_TYPE_ETB
     };
 
     // https://iss.moex.com/iss/reference/64
@@ -98,6 +100,10 @@ static class MoexApi {
 
                 case "ISQUALIFIEDINVESTORS":
                     result.ForQualifiedInvestors = To<Int32>(value) == 1;
+                    break;
+
+                case "LISTLEVEL":
+                    result.ListLevel = To<Int32>(value);
                     break;
             }
         }
