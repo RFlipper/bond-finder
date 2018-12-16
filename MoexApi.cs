@@ -25,6 +25,8 @@ static class MoexApi {
 
     // https://iss.moex.com/iss/reference/64
     public static IEnumerable<MoexBondHistoryItem> GetBondHistory(string board, DateTime date) {
+        var isToday = date == DateTime.Now.Date;
+
         var start = 0;
         var limit = 100;
 
@@ -35,7 +37,7 @@ static class MoexApi {
                 + "&start=" + start
                 + "&limit=" + limit;
 
-            var text = CachingDownloader.Download(url, TimeSpan.FromDays(123));
+            var text = CachingDownloader.Download(url, isToday ? TimeSpan.Zero : TimeSpan.FromDays(123));
             var obj = JsonConvert.DeserializeObject<JObject>(text);
 
             var columns = obj["history"]["columns"].ToObject<string[]>();

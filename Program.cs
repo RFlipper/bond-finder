@@ -18,7 +18,7 @@ class Program {
         var liqPercentile = 0.6m;
         var horizon = new DateTime(2022, 1, 1);
 
-        var aggregatedBonds = EnumerateHistoryItems(DateTime.Now.Date.AddDays(-1), analyzeDays)
+        var aggregatedBonds = EnumerateHistoryItems(DateTime.Now.Date, analyzeDays)
             .Where(r => r.MaturityDate > DateTime.Now.AddMonths(6) && r.MaturityDate < horizon)
             .Where(r => r.OfferDate == DateTime.MinValue && r.BuybackDate == DateTime.MinValue)
             .GroupBy(r => r.ID)
