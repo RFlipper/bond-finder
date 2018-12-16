@@ -11,6 +11,9 @@ class Program {
     static void Main(string[] args) {
         Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
 
+        if(!TimeZoneInfo.Local.DisplayName.Contains("Moscow"))
+            throw new NotSupportedException();
+
         var analyzeDays = 5;
         var liqPercentile = 0.6m;
         var horizon = new DateTime(2022, 1, 1);
