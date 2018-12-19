@@ -13,12 +13,14 @@ static class MoexApi {
     public const string
         BOND_TYPE_OFZ = "ofz_bond",
         BOND_TYPE_SUBFED = "subfederal_bond",
+        BOND_TYPE_MUNI = "municipal_bond",
         BOND_TYPE_CORP = "corporate_bond",
         BOND_TYPE_ETB = "exchange_bond";
 
     public static readonly IReadOnlyCollection<string> KNOWN_BOND_TYPES = new[] {
         BOND_TYPE_OFZ,
         BOND_TYPE_SUBFED,
+        BOND_TYPE_MUNI,
         BOND_TYPE_CORP,
         BOND_TYPE_ETB
     };
